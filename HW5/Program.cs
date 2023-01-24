@@ -55,20 +55,79 @@ int[] GetArray(int size) //
 }
 */
 
-// Задача 37: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве.
+// Задача 37: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. 
+//Результат запишите в новом массиве.
 // [1 2 3 4 5] -> 5 8 3
 // [6 7 3 6] -> 36 21
 
-int[] Array = GetArray(30);
+int[] Array = GetArray(5);
 Console.WriteLine($"[{String.Join(", ", Array)}]");
+int result = Result(Array);
+int LengthArray = Array.Length;
 
 
+int[] resultArray = GetArray2(result, LengthArray);
+Console.WriteLine($"[{String.Join(", ", resultArray)}]");
 
-int GetArray(int size){
-    int[] array = new int[size];
-    for(int i=0; i<size; i++){
-        array[i] = new Random().Next(50);
+int[] GetArray2(int result, int LengthArray)
+{
+int[] FinalArray = new int[result];
+    if(LengthArray % 2 == 0)
+    {for(int i = 0; i < result; i++) 
+    {
+        FinalArray[i] = Array[i] * Array[LengthArray - (i + 1)];
     }
-return array;
+    }
+    else 
+    {
+    {for(int i = 0; i < result-1; i++)
+    {FinalArray[i] = Array[i]* Array[LengthArray - (i + 1)];}
+    }
+    FinalArray[result-1] = Array[result-1];
+    }
+    return FinalArray;
 }
 
+
+//---------
+int[] GetArray(int size)  
+{
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        array[i] = new Random().Next(1,10);
+    }
+    return array;
+}
+//----------
+int Result(int[] Array){
+    int result1=0;
+    if (Array.Length%2==1){
+        result1 = Array.Length/2 +1;
+    }
+    else{
+        result1 = Array.Length/2;
+    }
+    return result1;
+}
+
+
+
+// int[] ResultArray(int ResultArraySize, int Array3Length)
+// {   
+//     int[] FinalArray = new int[ResultArraySize];
+//     if(Array3Length % 2 == 0)
+//     {for(int i = 0; i < ResultArraySize; i++) 
+//     {
+//         FinalArray[i] = Array3[i] * Array3[Array3Length - (i + 1)];
+//     }
+//     }
+//     else 
+//     {
+//     {for(int i = 0; i < ResultArraySize-1; i++)
+//     {FinalArray[i] = Array3[i]* Array3[Array3Length - (i + 1)];}
+//     }
+//     FinalArray[ResultArraySize-1] = Array3[ResultArraySize-1];
+//     }
+//     return FinalArray;
+// }
